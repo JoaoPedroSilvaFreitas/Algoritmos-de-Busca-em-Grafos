@@ -1,5 +1,4 @@
 #include "../header/Graph.h"
-#include "../header/Node.h"
 #include "../header/Edge.h"
 #include <iostream>
 #include <fstream>

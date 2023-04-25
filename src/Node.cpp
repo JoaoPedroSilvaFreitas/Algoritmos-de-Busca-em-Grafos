@@ -1,5 +1,4 @@
 #include "../header/Node.h"
-#include "../header/Edge.h"
 #include <iostream>
 #include <fstream>
 
@@ -196,40 +195,3 @@ Edge* Node::hasEdgeBetween(int target_id)
     return nullptr;
 }
 
-//imprime arestas
-void Node::Print_Edges()
-{
-    for(Edge* edge = first_edge; edge != nullptr; edge = edge->getNextEdge())
-    {
-        if(edge->getNextEdge() == nullptr)
-        {
-            cout << "[" << edge->getTargetId() << "]";
-        }
-        else
-        cout << "[" << edge->getTargetId() << "]-->";
-    }
-}
-
-void Node::Print_Edges_OF(ofstream& output_file, bool directed)
-{
-    for(Edge* edge = first_edge; edge != nullptr; edge = edge->getNextEdge())
-    {
-        if(directed)
-        {
-            if(edge->getNextEdge() == nullptr)
-            {
-                output_file << edge->getTargetId() << ";";
-            }
-            else
-            output_file << edge->getTargetId() << "->";
-        }else
-            {
-                if(edge->getNextEdge() == nullptr)
-                {
-                    output_file << edge->getTargetId() << ";";
-                }
-                else
-                output_file << edge->getTargetId() << "--";
-            }
-    }
-}
