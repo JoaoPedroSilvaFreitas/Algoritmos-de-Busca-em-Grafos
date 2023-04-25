@@ -5,7 +5,7 @@
 
 #include "header/Graph.h"
 #include "header/Node.h"
-#include "methods/Graph.cpp"
+#include "src/Graph.cpp"
 
 using namespace std;
 
