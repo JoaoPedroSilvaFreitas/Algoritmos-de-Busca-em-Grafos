@@ -28,7 +28,9 @@ class Graph
         //Search algorithms
 
         //não informados
-        void irrevogavel();
+        void irrevogavel(int id);
+        Edge* heuristicaIrrevogavel(Node* noaux);
+
         void backtracking();
         void buscaEmLargura();
         void buscaEmProfundidade();
@@ -41,10 +43,12 @@ class Graph
 
 
         //Other methods
+        void setNosNaoVisitado();
         void insertNode(int id);
         void insertEdge(int id, int target_id, float weight);
         bool searchNode(int id);
         Node* getNode(int id);
+        void PrintGraphList();
 
 
     private:

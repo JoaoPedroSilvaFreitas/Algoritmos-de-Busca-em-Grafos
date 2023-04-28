@@ -159,7 +159,6 @@ bool Node::searchEdge(int target_id)
     }
 
     return false;
-
 }
 
 //Incrementa e decremente grau de um nó
@@ -195,3 +194,16 @@ Edge* Node::hasEdgeBetween(int target_id)
     return nullptr;
 }
 
+//imprime arestas
+void Node::PrintEdges()
+{
+    for(Edge* edge = first_edge; edge != nullptr; edge = edge->getNextEdge())
+    {
+        if(edge->getNextEdge() == nullptr)
+        {
+            cout << "[" << edge->getTargetId() << "]";
+        }
+        else
+        cout << "[" << edge->getTargetId() << "]-->";
+    }
+}

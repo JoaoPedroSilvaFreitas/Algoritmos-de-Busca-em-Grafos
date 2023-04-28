@@ -146,3 +146,88 @@ Node *Graph::getNode(int id)
     }
     return node;
 }
+
+
+void Graph::PrintGraphList()
+{
+    for(Node* aux = first_node; aux != nullptr; aux = aux->getNextNode())
+    {
+        cout << "[" << aux->getId() << "]-->";
+        aux->PrintEdges();
+        cout << endl;
+    }
+}
+
+void Graph::setNosNaoVisitado()
+{
+    Node* noAux;
+    for(int i = 0; i < getOrder(); i++)
+    {
+        noAux = getNode(i);
+        noAux->setVisitado(false);
+    }
+}
+
+
+Edge* Graph::heuristicaIrrevogavel(Node* noAux)
+{
+    if(noAux->getNumberEdges() != 0 && !noAux->getVisitado())
+    {
+        Edge* arestaAux = noAux->getFirstEdge();
+        for(Edge* aux = noAux->getFirstEdge(); aux != nullptr; aux = aux->getNextEdge())
+        {
+            if((aux->getWeight() < arestaAux->getWeight()) && !getNode(aux->getTargetId())->getVisitado())
+            {
+                arestaAux = aux;
+            }
+        }
+        return arestaAux;
+        /*
+        Edge* arestaAux = noAux->getFirstEdge();
+        Edge* resultado = arestaAux;
+
+        for(int i = 0; i < noAux->getNumberEdges(); i++)
+        {
+            if((arestaAux->getWeight() < resultado->getWeight()))
+            {
+                resultado = arestaAux;
+            }
+        }
+        return resultado;*/
+    }else{
+        return nullptr;
+    }
+
+}
+
+void Graph::irrevogavel(int id)
+{
+    PrintGraphList();
+    setNosNaoVisitado();
+    Node* noAux = getFirstNode();
+    int idObjetivo = id;
+    bool sucesso = false;
+
+    while(!sucesso)
+    {
+        cout << noAux->getId() << endl;
+        Edge* arestaAux = heuristicaIrrevogavel(noAux);
+        if(arestaAux != nullptr)
+        {
+            noAux->setVisitado(true);
+            noAux = getNode(arestaAux->getTargetId());
+            
+            if(noAux->getId() == idObjetivo){
+
+                cout << noAux->getId() << endl;
+                sucesso = true;
+                cout << "Sucesso!" << endl;
+                return;
+            }
+        }else{
+            cout << "Fracasso!" << endl;
+            return;
+        }
+    }
+
+}

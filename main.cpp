@@ -73,9 +73,14 @@ char MainMenu(Graph* grafo)
 {
     char opt = '1';
     cout << "--------------------------------Main Menu---------------------------------" << endl;
-    cout << "1-" << endl;
-    cout << "2-" << endl;
-    cout << "3-" << endl;
+    cout << "1- Irrevogavel" << endl;
+    cout << "2- Backtracking" << endl;
+    cout << "3- Busca em largura" << endl;
+    cout << "4- Busca em profundidade" << endl;
+    cout << "5- Busca Ordenada" << endl;
+    cout << "6- Busca Gulosa" << endl;
+    cout << "7- A*" << endl;
+    cout << "8- IDA*" << endl;
     cout << "0- Sair" << endl;
     cout << "--------------------------------------------------------------------------" << endl;
     cin >> opt;
@@ -87,7 +92,16 @@ void AuxMainMenu(Graph* grafo, ofstream& output_file, string output_file_name)
     char opt = '1';
     while(opt != '0')
     {
+        Graph* resultado;
         opt = MainMenu(grafo);
+        if(opt == '1')
+        {
+            int id;
+            cout << "Id do nó objetivo:";
+            cin >> id;
+            grafo->irrevogavel(id);
+            resultado = grafo;
+        }
     }
 }
 

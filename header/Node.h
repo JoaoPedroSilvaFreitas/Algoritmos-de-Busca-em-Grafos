@@ -41,6 +41,7 @@ class Node
         void decrementInDegree();
         Edge* hasEdgeBetween(int target_id);
         int getNumberEdges();
+        void PrintEdges();
 
 
     private:
