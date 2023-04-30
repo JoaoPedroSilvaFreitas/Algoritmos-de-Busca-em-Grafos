@@ -23,12 +23,14 @@ class Node
         Node* getNextNode();
         Edge* getEdge(int target_id);
         bool getVisitado();
+        Node* getPai();//backtracking
 
 
         // Setters
         void setNextNode(Node* node);
         void setWeight(float weight);
         void setVisitado(bool val);
+        void setPai(Node* node);//backtracking
 
 
         // Other methods
@@ -56,6 +58,7 @@ class Node
 
         //Atributos auxiliares 
         bool visitado;
+        Node* pai;//backtracking
 };
 
 #endif // NODE_H_INCLUDED

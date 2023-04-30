@@ -171,6 +171,7 @@ void Graph::setNosNaoVisitado()
 
 Edge* Graph::heuristicaIrrevogavel(Node* noAux)
 {
+    //Essa heuristica escolhe baseado na aresta de menor valor
     if(noAux->getNumberEdges() != 0 && !noAux->getVisitado())
     {
         Edge* arestaAux = noAux->getFirstEdge();
@@ -182,30 +183,16 @@ Edge* Graph::heuristicaIrrevogavel(Node* noAux)
             }
         }
         return arestaAux;
-        /*
-        Edge* arestaAux = noAux->getFirstEdge();
-        Edge* resultado = arestaAux;
-
-        for(int i = 0; i < noAux->getNumberEdges(); i++)
-        {
-            if((arestaAux->getWeight() < resultado->getWeight()))
-            {
-                resultado = arestaAux;
-            }
-        }
-        return resultado;*/
     }else{
         return nullptr;
     }
-
 }
 
-void Graph::irrevogavel(int id)
+void Graph::irrevogavel(int idObjetivo)
 {
     PrintGraphList();
     setNosNaoVisitado();
     Node* noAux = getFirstNode();
-    int idObjetivo = id;
     bool sucesso = false;
 
     while(!sucesso)
@@ -231,3 +218,60 @@ void Graph::irrevogavel(int id)
     }
 
 }
+
+
+Edge* Graph::heuristicaBacktracking(Node* noAux, int idObjetivo)
+{
+
+    if(noAux->getNumberEdges() != 0)
+    {
+        for(Edge* aux = noAux->getFirstEdge(); aux != nullptr; aux = aux->getNextEdge())
+        {
+            if(aux->getTargetId() == idObjetivo || !getNode(aux->getTargetId())->getVisitado()){
+
+                return aux;
+
+            }else if(aux == noAux->getLastEdge()){
+                noAux->setVisitado(true);
+                return nullptr;
+            }
+        }
+
+    }else{
+        noAux->setVisitado(true);
+        return nullptr;
+    }    
+}
+
+void Graph::backtracking(int idObjetivo)
+{
+    Node* noAux = getFirstNode();
+    Edge* arestaAux;
+    bool sucesso = false;
+    PrintGraphList();
+    setNosNaoVisitado();
+    
+    while(!sucesso)
+    {
+        cout << noAux->getId() << endl;
+        arestaAux = heuristicaBacktracking(noAux,idObjetivo);
+        if(arestaAux != nullptr)
+        {
+            getNode(arestaAux->getTargetId())->setPai(noAux);
+            noAux = getNode(arestaAux->getTargetId());
+            if(noAux->getId() == idObjetivo){
+
+                cout << noAux->getId() << endl;
+                sucesso = true;
+                cout << "Sucesso!" << endl;
+                return;
+            }
+        }else if(arestaAux == nullptr){
+            noAux = getNode(noAux->getPai()->getId());//get pai
+        }else{
+            cout << "Fracasso!" << endl;
+            return;
+        }
+    }
+}
+

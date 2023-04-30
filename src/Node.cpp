@@ -16,6 +16,8 @@ Node::Node(int id)
     this->last_edge = nullptr;
     this->next_node = nullptr;
 
+    this->pai = nullptr;
+
     this->number_edges = 0;
 
 };
@@ -206,4 +208,15 @@ void Node::PrintEdges()
         else
         cout << "[" << edge->getTargetId() << "]-->";
     }
+}
+
+
+Node* Node::getPai()
+{
+    return this->pai;
+}
+
+void Node::setPai(Node* pai)
+{
+    this->pai = pai;
 }

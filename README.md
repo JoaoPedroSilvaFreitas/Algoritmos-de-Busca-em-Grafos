@@ -2,7 +2,8 @@
 apenas para praticar
 
 g++ main.cpp src/Graph.cpp src/Node.cpp src/Edge.cpp -o main
-.\main files/input/grafo1.txt files/output/output.txt 0 1 0
+
+.\main files/input/grafo2.txt files/output/output.txt 1 0 0
 
 
 

@@ -94,13 +94,20 @@ void AuxMainMenu(Graph* grafo, ofstream& output_file, string output_file_name)
     {
         Graph* resultado;
         opt = MainMenu(grafo);
-        if(opt == '1')
-        {
+        if(opt == '1'){
+
             int id;
             cout << "Id do nó objetivo:";
             cin >> id;
             grafo->irrevogavel(id);
-            resultado = grafo;
+
+        }else if(opt == '2'){
+
+            int id;
+            cout << "Id do nó objetivo:";
+            cin >> id;
+            grafo->backtracking(id);
+
         }
     }
 }
