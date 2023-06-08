@@ -169,7 +169,7 @@ void Graph::setNosNaoVisitado()
 }
 
 
-Edge* Graph::heuristicaIrrevogavel(Node* noAux)
+Edge* Graph::estrategiaDeControle_Irrevogavel(Node* noAux)
 {
     //Essa heuristica escolhe baseado na aresta de menor valor
     if(noAux->getNumberEdges() != 0 && !noAux->getVisitado())
@@ -198,7 +198,7 @@ void Graph::irrevogavel(int idObjetivo)
     while(!sucesso)
     {
         cout << noAux->getId() << endl;
-        Edge* arestaAux = heuristicaIrrevogavel(noAux);
+        Edge* arestaAux = estrategiaDeControle_Irrevogavel(noAux);
         if(arestaAux != nullptr)
         {
             noAux->setVisitado(true);
@@ -220,7 +220,7 @@ void Graph::irrevogavel(int idObjetivo)
 }
 
 
-Edge* Graph::heuristicaBacktracking(Node* noAux, int idObjetivo)
+Edge* Graph::estrategiaDeControle_Backtracking(Node* noAux, int idObjetivo)
 {
 
     if(noAux->getNumberEdges() != 0)
@@ -254,7 +254,7 @@ void Graph::backtracking(int idObjetivo)
     while(!sucesso)
     {
         cout << noAux->getId() << endl;
-        arestaAux = heuristicaBacktracking(noAux,idObjetivo);
+        arestaAux = estrategiaDeControle_Backtracking(noAux,idObjetivo);
         if(arestaAux != nullptr)
         {
             getNode(arestaAux->getTargetId())->setPai(noAux);

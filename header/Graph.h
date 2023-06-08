@@ -29,10 +29,10 @@ class Graph
 
         //não informados
         void irrevogavel(int id);
-        Edge* heuristicaIrrevogavel(Node* noaux);
+        Edge* estrategiaDeControle_Irrevogavel(Node* noaux);
 
         void backtracking(int id);
-        Edge* heuristicaBacktracking(Node* noaux, int idObjetivo);
+        Edge* estrategiaDeControle_Backtracking(Node* noaux, int idObjetivo);
 
         void buscaEmLargura();
         void buscaEmProfundidade();
